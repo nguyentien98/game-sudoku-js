@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sudoku</title>
+	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="bg-warnings text-center text-white">
+		<h3 class="d-inline">Sudoku Game</h3>
+	</nav>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-6 offset-md-1">
+				<table class="d-block table table-bordered border-0 text-center">
+					<tr>
+						<td>
+							<input type="number" class="cell" min="0" max="9">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0 border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0 border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0 border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0 border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-bottom-orange">
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td  class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td class="border-orange">
+							<input type="number" class="cell">
+						</td>
+						<td class="border-left-0">
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+						<td>
+							<input type="number" class="cell">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<div class="text-center mb-2">Chọn level</div>
+				<div class="d-flex justify-content-center align-items-center game-level mb-4">
+					<div class="form-group col-6">
+						<div class="border border-success p-2">
+							<input type="range" class="form-control-range" id="level_number" value="1" min="1" max="3" step="1">
+						</div>
+					</div>
+					<div class="form-group col-6">
+						<button class="btn btn-outline-success d-block w-100" onclick="clickNewGame()">Tạo game mới</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Sleep time(s)" id="time">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-outline-primary d-block w-100" onclick="displaySolution(document.getElementById('time').value)">Giải game</button>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-outline-warning d-block w-100" onclick="displaySolution(0)">Kết quả</button>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-outline-danger d-block w-100" onclick="check()">Kiểm tra</button>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-outline-danger d-block w-100" onclick="reset()">Reset</button>
+				</div>
+				<div class="alert" style="display: none"></div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src="js/sudoku.js"></script>
+	<script src="js/control.js"></script>
+</body>
+</html>

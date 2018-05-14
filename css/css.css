@@ -1,0 +1,47 @@
+table input[type='number'] {
+    -moz-appearance:textfield;
+    border: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    margin-left: 0 !important;
+    font-size: 23px;
+}
+table #box{
+	box-shadow: 0 0 5px #999;
+}
+input:focus{
+	outline: none;
+}
+table input{
+	margin-left: -2px !important;
+	margin-top: -4px !important;
+}
+table input::-webkit-outer-spin-button,
+table input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.border-orange{
+	border-right: 1px solid #f60 !important;
+}
+.border-bottom-orange{
+	margin-top: 1px !important;
+	border-bottom: 1px solid #f60 !important;
+}
+table td{
+	padding: 0 !important;
+	width: 50px !important;
+	height: 50px;
+	vertical-align: bottom !important;
+}
+nav{
+	height: 50px;
+	line-height: 50px;
+}
+.bg-warnings{
+	background-color: #f60 !important;
+}
+.game-level .col-6{
+	padding: 0 10px 0 0  !important;
+}

@@ -32,6 +32,7 @@ function fillToInputs(array, inputs, time = 0){
 			}
 		}
 	} else {
+		reset();
 		$('.cell').attr('disabled', '');
 		var merge = [];
 		var count = 0;
@@ -161,15 +162,21 @@ function reset() {
 	$('.alert').hide();
 	$('.cell').css({'background': '#fff'});
 	var array = generateEmptyPuzzle();
-	if (oldgame != '') {
-		array = JSON.parse(oldgame);
-	}
+	array = JSON.parse(oldgame);
 	fillToInputs(array, inputs);
 }
 
 function clickNewGame() {
+	fillCell = [];
+	oldgame = '';
+	fillCellClone = '';
+	solving = 'on';
+	$('.cell').removeAttr('disabled');
+	clearInterval(sleep);
+	$('.alert').hide();
+	$('.cell').css({'background': '#fff'});
+	fillToInputs(generateEmptyPuzzle(), inputs);
 	let level = document.getElementById('level_number').value;
-	reset();
 	setNewGame(level);
 	window.alert('Tạo thành công!!!');
 }

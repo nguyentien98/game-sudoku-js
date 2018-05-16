@@ -65,11 +65,15 @@ function fillToInputs(array, inputs, time = 0){
 		}, time * 1000);
 	}
 }
-
+var resolving = 'on';
 function stopFill(){
+	resolving = 'on';
 	clearInterval(sleep);
 }
 function continueFill(){
+		if (resolving == 'off') {
+			return false;
+		}
 		if (fillCellClone == '') {
 			return false;
 		}
@@ -86,7 +90,7 @@ function continueFill(){
 		var cell = 0;
 		fillCellClone = fillCellClone.filter(key => key != 0);
 		sleep = setInterval(function(){
-			solving = 'off';
+			resolving = 'off';
 			var number = cell++;
 			if (fillCellClone[number] != 0) {
 				$('.cell').css({'background' : '#FFF'});
@@ -96,7 +100,7 @@ function continueFill(){
 			}
 
 			if (cell >= fillCellClone.length) {
-				solving = 'on';
+				resolving = 'on';
 				clearInterval(sleep);
 				$('.cell').removeAttr('disabled', '');
 				$('.cell').css({'background' : '#FFF'});

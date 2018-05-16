@@ -69,6 +69,9 @@ function stopFill(){
 	clearInterval(sleep);
 }
 function continueFill(){
+		if (fillCellClone == '') {
+			return false;
+		}
 		$('.cell').css({'background' : '#FFF'});
 		var puzzle = solveSudoku(valid, 0, 0);
 		$('.cell').attr('disabled', '');
@@ -151,6 +154,7 @@ function displaySolution(time){
 
 
 function reset() {
+	fillCellClone = '';
 	solving = 'on';
 	$('.cell').removeAttr('disabled');
 	clearInterval(sleep);

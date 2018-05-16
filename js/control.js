@@ -18,8 +18,10 @@ function getValues(){
 }
 
 var sleep;
-
-function fillToInputs(puzzle, inputs, time = 0){
+var solving = 'on';
+function fillToInputs(array, inputs, time = 0){
+	var string = JSON.stringify(array);
+	var puzzle = JSON.parse(string);
 	if (time == 0) {
 		$('.cell').removeAttr('disabled');
 		var cell = 0;
@@ -39,17 +41,16 @@ function fillToInputs(puzzle, inputs, time = 0){
 		}
 		var cell = 0;
 		sleep = setInterval(function(){
+			solving = 'off';
 			var number = cell++;
-			if (inputs[number].value == UNASSIGNED) {
-				inputs[number].value = merge[number];
-			}
-
-			inputs[number].style.background = '#f60';
+			inputs[fillCell[number]].style.background = '#f60';
+			inputs[fillCell[number]].value = merge[fillCell[number]];
 			if (number > 0) {
-				var style = number-1;
+				var style = fillCell[number - 1];
 				inputs[style].style.background = '#fff';
 			}
-			if (cell >= 81) {
+			if (cell >= fillCell.length) {
+				solving = 'on';
 				clearInterval(sleep);
 				$('.cell').removeAttr('disabled', '');
 				$('.cell').css({'background' : '#FFF'});
@@ -57,7 +58,9 @@ function fillToInputs(puzzle, inputs, time = 0){
 		}, time * 1000);
 	}
 }
+
 function setNewGame(level = 1) {
+	solving = 'on';
 	level = parseInt(level);
 	if (level == 1)
 		cellCount = 50;
@@ -74,11 +77,15 @@ function setNewGame(level = 1) {
 			break;
 		}
 	}
-	var ge = generatePuzzle(cellCount);
-	fillToInputs(ge, inputs);
+	var newGame = generatePuzzle(cellCount);
+	fillToInputs(newGame, inputs);
+	oldgame = JSON.stringify(newGame);
 }
 
 function displaySolution(time){
+	if (solving == 'off') {
+		return false;
+	}
 	if (valid.length < 9) {
 		$('.alert').each(function(){
 			$(this).removeClass('alert-success');
@@ -101,13 +108,18 @@ function displaySolution(time){
 	fillToInputs(solve, inputs, time);
 }
 
+
 function reset() {
+	solving = 'on';
 	$('.cell').removeAttr('disabled');
 	clearInterval(sleep);
 	$('.alert').hide();
-	valid = [];
 	$('.cell').css({'background': '#fff'});
-	fillToInputs(generateEmptyPuzzle(), inputs);
+	var array = generateEmptyPuzzle();
+	if (oldgame != '') {
+		array = JSON.parse(oldgame);
+	}
+	fillToInputs(array, inputs);
 }
 
 function clickNewGame() {
@@ -158,9 +170,25 @@ function shuffle(b) {
 }
 
 $(document).ready(function(){
-	$('table input[type="number"]').keyup(function(){
+	$('input[type="number"]').keyup(function(){
 		if ($(this).val() < 0 || $(this).val() > 9) {
 			$(this).val(0);
 		}
+	});
+	$('input[type="range"]').change(function(){
+		var name = '';
+		if ($(this).val() == 1) 
+			name = 'Dễ';
+		else if($(this).val() == 2)
+			name = 'Trung bình';
+		else
+			name = 'Khó';
+		$('span#level').html(name);
+	});
+	$(document).on('keypress', 'input', function(e){
+		if (e.which == 69 || e.which == 101) {
+			return false;
+		}
+		console.log(e.which);
 	});
 });

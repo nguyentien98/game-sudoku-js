@@ -4,6 +4,8 @@ const UNASSIGNED = "";
 const inputs = document.getElementsByClassName('cell');
 const alert = document.getElementById('alert');
 var valid = [];
+var oldgame = '';
+var fillCell = [];
 function usedInRow(grid, row, num) {
     return grid[row].indexOf(num) == -1 ? false : true;
 }
@@ -119,17 +121,19 @@ function randomPuzzle(){
 function generatePuzzle(cellCount){
 	if (Number.isInteger(cellCount) && cellCount >= 0 && cellCount < 81) {
 		if (cellCount === 0) {
-			return this.generateEmptyPuzzle();
+			return generateEmptyPuzzle();
 		} else {
 			var cells = Array.apply(null, 
 							Array(cellCount)).map(function() { 
 								return Math.floor(Math.random() * 79) + 0; 
 						});
-			var i = 0;
+			var count = 0;
 			for(var row = 0; row < 9; row++){
 				for(var column = 0; column < 9; column++){
-					if (cells.indexOf(i++) == -1) {
-						valid[row][column] = UNASSIGNED ;
+					var i = count++;
+					if (cells.indexOf(i) == -1) {
+						fillCell.push(i);
+						valid[row][column] = UNASSIGNED;
 					}
 				}
 			}

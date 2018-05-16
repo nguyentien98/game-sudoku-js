@@ -45,3 +45,6 @@ nav{
 .game-level .col-6{
 	padding: 0 10px 0 0  !important;
 }
+.filling{
+	background-color: #f60;
+}

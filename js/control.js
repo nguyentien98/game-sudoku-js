@@ -17,17 +17,11 @@ function getValues(){
 	return collect;
 }
 
-// function fillToInputs(puzzle, inputs, time){
-// 	var cell = 0;
-// 	for(var i = 0; i < puzzle.length; i++){
-// 		for(var j = 0; j < puzzle[i].length; j++){
-// 			inputs[cell++].value = puzzle[i][j];
-// 		}
-// 	}
-// }
+var sleep;
 
 function fillToInputs(puzzle, inputs, time = 0){
 	if (time == 0) {
+		$('.cell').removeAttr('disabled');
 		var cell = 0;
 		for(var i = 0; i < puzzle.length; i++){
 			for(var j = 0; j < puzzle[i].length; j++){
@@ -44,20 +38,25 @@ function fillToInputs(puzzle, inputs, time = 0){
 			}
 		}
 		var cell = 0;
-		var sleep = setInterval(function(){
+		sleep = setInterval(function(){
 			var number = cell++;
 			if (inputs[number].value == UNASSIGNED) {
 				inputs[number].value = merge[number];
-			} 
+			}
+
+			inputs[number].style.background = '#f60';
+			if (number > 0) {
+				var style = number-1;
+				inputs[style].style.background = '#fff';
+			}
 			if (cell >= 81) {
 				clearInterval(sleep);
 				$('.cell').removeAttr('disabled', '');
+				$('.cell').css({'background' : '#FFF'});
 			}
 		}, time * 1000);
 	}
 }
-
-
 function setNewGame(level = 1) {
 	level = parseInt(level);
 	if (level == 1)
@@ -103,6 +102,8 @@ function displaySolution(time){
 }
 
 function reset() {
+	$('.cell').removeAttr('disabled');
+	clearInterval(sleep);
 	$('.alert').hide();
 	valid = [];
 	$('.cell').css({'background': '#fff'});
@@ -111,6 +112,7 @@ function reset() {
 
 function clickNewGame() {
 	let level = document.getElementById('level_number').value;
+	reset();
 	setNewGame(level);
 	window.alert('Tạo thành công!!!');
 }
@@ -155,7 +157,6 @@ function shuffle(b) {
 	return a;
 }
 
-// Check valid number
 $(document).ready(function(){
 	$('table input[type="number"]').keyup(function(){
 		if ($(this).val() < 0 || $(this).val() > 9) {

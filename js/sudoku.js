@@ -148,14 +148,18 @@ function generateEmptyPuzzle(isReset = true){
 
 function isSovled(puzzle){
 	var cell = 0;
+	var incorrect = [];
 	for(var i = 0; i < 9; i++){
 		for(var j = 0; j < 9; j++){
 			var num = puzzle[i][j];
-			var c = cell++;
+			cell++;
 			if (!correct(puzzle, i, j, num) || findUnassignedLocation(puzzle, i, j) != false) {
-				return false;
+				incorrect.push(cell);
 			}
 		}
+	}
+	if (incorrect.length > 0) {
+		return incorrect;
 	}
 	return true;
 }

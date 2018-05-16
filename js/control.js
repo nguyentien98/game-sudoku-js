@@ -19,6 +19,7 @@ function getValues(){
 
 var sleep;
 var solving = 'on';
+var fillCellClone = '';
 function fillToInputs(array, inputs, time = 0){
 	var string = JSON.stringify(array);
 	var puzzle = JSON.parse(string);
@@ -40,7 +41,11 @@ function fillToInputs(array, inputs, time = 0){
 			}
 		}
 		var cell = 0;
+		if (fillCellClone == '') {
+			fillCellClone = JSON.parse(JSON.stringify(fillCell));
+		}
 		sleep = setInterval(function(){
+			fillCellClone.shift();
 			solving = 'off';
 			var number = cell++;
 			inputs[fillCell[number]].style.background = '#f60';
@@ -54,11 +59,47 @@ function fillToInputs(array, inputs, time = 0){
 				clearInterval(sleep);
 				$('.cell').removeAttr('disabled', '');
 				$('.cell').css({'background' : '#FFF'});
+				fillCellClone = '';
 			}
 		}, time * 1000);
 	}
 }
 
+function stopFill(){
+	clearInterval(sleep);
+}
+function continueFill(){
+		$('.cell').css({'background' : '#FFF'});
+		var puzzle = solveSudoku(valid, 0, 0);
+		$('.cell').attr('disabled', '');
+		var merge = [];
+		var count = 0;
+		for(var i = 0; i < puzzle.length; i++){
+			for(var j = 0; j < puzzle[i].length; j++){
+				merge[count++] = puzzle[i][j];
+			}
+		}
+		var cell = 0;
+		fillCellClone = fillCellClone.filter(key => key != 0);
+		sleep = setInterval(function(){
+			solving = 'off';
+			var number = cell++;
+			if (fillCellClone[number] != 0) {
+				$('.cell').css({'background' : '#FFF'});
+				inputs[fillCellClone[number]].style.background = '#f60';
+				inputs[fillCellClone[number]].value = merge[fillCellClone[number]];
+				fillCellClone[number] = 0;
+			}
+
+			if (cell >= fillCellClone.length) {
+				solving = 'on';
+				clearInterval(sleep);
+				$('.cell').removeAttr('disabled', '');
+				$('.cell').css({'background' : '#FFF'});
+				fillCellClone = '';
+			}
+		}, $('#time').val() * 1000);
+}
 function setNewGame(level = 1) {
 	solving = 'on';
 	level = parseInt(level);
@@ -143,6 +184,7 @@ function check(){
 		}
 	});
 	var checkSolve = isSovled(getValues());
+	console.log(checkSolve);
 	if (checkSolve === true) {
 		$('.alert').removeClass('alert-danger');
 		$('.alert').addClass('alert-success');

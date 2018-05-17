@@ -132,11 +132,11 @@ function setNewGame(level = 1) {
 }
 
 function displaySolution(time){
-	if (time == '' || time == 0) {
-		$('.cell').css({'background' : '#FFF'});
-	}
 	if (solving == 'off') {
 		return false;
+	}
+	if (time == '' || time == 0) {
+		$('.cell').css({'background' : '#FFF'});
 	}
 	if (valid.length < 9) {
 		$('.alert').each(function(){

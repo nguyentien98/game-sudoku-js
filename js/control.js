@@ -224,6 +224,10 @@ function check(){
 	});
 	var checkSolve = isSovled(getValues());
 	if (checkSolve === true) {
+		$( ".success-title-green" ).show( "slow" );
+		setTimeout(function(){
+			$( ".success-title-green" ).hide( "slow" );
+		}, 1000)
 		$('.alert').removeClass('alert-danger');
 		$('.alert').addClass('alert-success');
 		$('.alert').show();

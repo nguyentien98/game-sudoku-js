@@ -127,8 +127,23 @@ function setNewGame(level = 1) {
 		}
 	}
 	var newGame = generatePuzzle(cellCount);
+	
 	fillToInputs(newGame, inputs);
 	oldgame = JSON.stringify(newGame);
+	disableInput(newGame);
+}
+
+function disableInput(puzzle){
+	var count = 0;
+	for(var i = 0; i < puzzle.length; i++){
+		for(var j = 0; j < puzzle.length; j++){
+			var cell = count++;
+			if (puzzle[i][j] != UNASSIGNED) {
+				console.log(cell);
+				inputs[cell].disabled = true;
+			}
+		}
+	}
 }
 
 function displaySolution(time){
@@ -173,9 +188,14 @@ function reset() {
 	var array = generateEmptyPuzzle();
 	array = JSON.parse(oldgame);
 	fillToInputs(array, inputs);
+	disableInput(array);
 }
 
 function clickNewGame() {
+	$( ".success-title" ).show( "slow" );
+	setTimeout(function(){
+		$( ".success-title" ).hide( "slow" );
+	}, 1000)
 	fillCell = [];
 	oldgame = '';
 	fillCellClone = '';
@@ -187,7 +207,6 @@ function clickNewGame() {
 	fillToInputs(generateEmptyPuzzle(), inputs);
 	let level = document.getElementById('level_number').value;
 	setNewGame(level);
-	window.alert('Tạo thành công!!!');
 }
 
 function check(){
@@ -210,6 +229,7 @@ function check(){
 		$('.alert').show();
 		$('.alert').html('Bạn đã giải thành công!');
 	} else{
+		$('.cell').css({'background' : '#fff'});
 		for (var i = 0; i < checkSolve.length; i++) {
 			inputs[checkSolve[i]].style = "background: red";
 		}

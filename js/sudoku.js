@@ -152,9 +152,9 @@ function isSovled(puzzle){
 	for(var i = 0; i < 9; i++){
 		for(var j = 0; j < 9; j++){
 			var num = puzzle[i][j];
-			cell++;
-			if (!correct(puzzle, i, j, num) || findUnassignedLocation(puzzle, i, j) != false) {
-				incorrect.push(cell);
+			var pos = cell++;
+			if (!correct(puzzle, i, j, num) || num == UNASSIGNED) {
+				incorrect.push(pos);
 			}
 		}
 	}

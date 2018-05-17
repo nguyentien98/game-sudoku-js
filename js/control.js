@@ -144,6 +144,8 @@ function displaySolution(time){
 		});
 		return false;
 	}
+	if (true) {}
+	valid = getValues();
 	var solve = solveSudoku(valid, 0, 0);
 	if (!solve) {
 		$('.alert').each(function(){
@@ -199,13 +201,15 @@ function check(){
 		}
 	});
 	var checkSolve = isSovled(getValues());
-	console.log(checkSolve);
 	if (checkSolve === true) {
 		$('.alert').removeClass('alert-danger');
 		$('.alert').addClass('alert-success');
 		$('.alert').show();
 		$('.alert').html('Bạn đã giải thành công!');
 	} else{
+		for (var i = 0; i < checkSolve.length; i++) {
+			inputs[checkSolve[i]].style = "background: red";
+		}
 		$('.alert').removeClass('alert-success');
 		$('.alert').addClass('alert-danger');
 		$('.alert').show();
